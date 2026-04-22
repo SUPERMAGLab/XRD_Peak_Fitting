@@ -2,500 +2,328 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XRD Peak Fitting Applet — User Guide</title>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>SUPERMAG Lab: XRD Peak Fitting Applet</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-.smg-guide * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  float: none !important;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --maroon:#501214; --maroon-dark:#3a0d0f; --gold:#6A5638;
+  --bg:#FAF7F2; --surface:#fff; --bdr:#d4c4b0;
+  --fg:#2a0d0f; --dim:#7a5a5c;
 }
-.smg-guide {
-  font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
-  font-size: 15px;
-  line-height: 1.7;
-  color: #2a0d0f;
-  background: #FAF7F2;
-  max-width: 820px;
-  margin: 0 auto;
-}
-.smg-guide .smg-header {
-  background: #501214;
-  color: #fff;
-  padding: 2rem 1.5rem 1.75rem;
-  border-radius: 10px 10px 0 0;
-  margin-bottom: 0;
-  display: block;
-  position: relative;
-  overflow: hidden;
-}
-.smg-guide .smg-eyebrow {
-  display: block;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.63rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: #c8a96e;
-  margin-bottom: 0.5rem;
-  line-height: 1.4;
-}
-.smg-guide .smg-h1 {
-  display: block;
-  font-family: 'EB Garamond', Georgia, serif;
-  font-size: clamp(1.45rem, 4vw, 2rem);
-  font-weight: 600;
-  line-height: 1.25;
-  color: #fff;
-  margin: 0 0 0.4rem;
-}
-.smg-guide .smg-header-sub {
-  display: block;
-  font-size: 0.84rem;
-  color: rgba(255,255,255,0.65);
-  font-style: italic;
-  line-height: 1.5;
-}
-.smg-guide .smg-main {
-  display: block;
-  background: #FAF7F2;
-  padding: 2rem 1.5rem 3rem;
-}
-.smg-guide .smg-h2 {
-  display: block;
-  font-family: 'EB Garamond', Georgia, serif;
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #501214;
-  margin: 2.25rem 0 0.85rem;
-  padding-bottom: 0.4rem;
-  border-bottom: 2px solid #d4c4b0;
-  line-height: 1.3;
-}
-.smg-guide .smg-h2:first-child {
-  margin-top: 0;
-}
-.smg-guide .smg-card {
-  display: block;
-  background: #ffffff;
-  border: 1px solid #d4c4b0;
-  border-radius: 10px;
-  padding: 1.1rem 1.25rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 1px 4px rgba(80,18,20,0.06);
-}
-.smg-guide .smg-mod-heading {
-  display: block;
-  margin: 0 0 0.6rem;
-  line-height: 1.4;
-}
-.smg-guide .smg-badge {
-  display: inline-block;
-  width: 1.55rem;
-  height: 1.55rem;
-  line-height: 1.55rem;
-  text-align: center;
-  background: #501214;
-  color: #c8a96e;
-  border-radius: 50%;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.7rem;
-  font-weight: 600;
-  margin-right: 0.45rem;
-  vertical-align: middle;
-}
-.smg-guide .smg-mod-title {
-  display: inline;
-  font-family: 'IBM Plex Sans', system-ui, sans-serif;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #501214;
-  vertical-align: middle;
-}
-.smg-guide .smg-p {
-  display: block;
-  margin-bottom: 0.8rem;
-  color: #2a0d0f;
-  line-height: 1.7;
-}
-.smg-guide .smg-p:last-child {
-  margin-bottom: 0;
-}
-.smg-guide .smg-strong {
-  font-weight: 600;
-}
-.smg-guide .smg-formula {
-  display: block;
-  background: #501214;
-  color: rgba(255,255,255,0.92);
-  border-radius: 6px;
-  padding: 0.7rem 1rem;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.79rem;
-  line-height: 1.85;
-  margin: 0.55rem 0 0.9rem;
-  overflow-x: auto;
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-.smg-guide .smg-note {
-  display: block;
-  background: #fdf6ec;
-  border-left: 3px solid #6A5638;
-  padding: 0.6rem 0.9rem;
-  font-size: 0.82rem;
-  color: #5a4828;
-  margin: 0.7rem 0;
-  line-height: 1.6;
-}
-.smg-guide .smg-info {
-  display: block;
-  background: rgba(80,18,20,0.04);
-  border-left: 3px solid #501214;
-  padding: 0.6rem 0.9rem;
-  font-size: 0.82rem;
-  color: #7a5a5c;
-  margin: 0.7rem 0;
-  line-height: 1.6;
-}
-.smg-guide .smg-table-wrap {
-  display: block;
-  overflow-x: auto;
-  margin: 0.5rem 0 1rem;
-  -webkit-overflow-scrolling: touch;
-}
-.smg-guide .smg-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.82rem;
-  min-width: 460px;
-}
-.smg-guide .smg-table th {
-  background: #501214;
-  color: #fff;
-  padding: 0.4rem 0.65rem;
-  text-align: left;
-  font-weight: 500;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.74rem;
-  white-space: nowrap;
-}
-.smg-guide .smg-table td {
-  padding: 0.38rem 0.65rem;
-  border-bottom: 1px solid #d4c4b0;
-  vertical-align: top;
-  line-height: 1.55;
-}
-.smg-guide .smg-table tr:nth-child(even) td {
-  background: #FAF7F2;
-}
-.smg-guide .smg-table td:first-child {
-  font-family: 'IBM Plex Mono', monospace;
-  color: #501214;
-  font-weight: 600;
-  white-space: nowrap;
-}
-.smg-guide .smg-ul {
-  display: block;
-  margin: 0.4rem 0 0.85rem 1.4rem;
-  padding: 0;
-}
-.smg-guide .smg-ul li {
-  display: list-item;
-  list-style: disc;
-  margin-bottom: 0.35rem;
-  line-height: 1.65;
-  color: #2a0d0f;
-}
-.smg-guide .smg-mono {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.88em;
-  color: #501214;
-}
-.smg-guide .smg-hr {
-  display: block;
-  height: 1px;
-  background: #d4c4b0;
-  margin: 2rem 0;
-  border: none;
-}
-.smg-guide .smg-footer {
-  display: block;
-  background: #3a0d0f;
-  color: rgba(255,255,255,0.5);
-  text-align: center;
-  padding: 1.25rem 1rem;
-  font-size: 0.72rem;
-  line-height: 1.75;
-  border-radius: 0 0 10px 10px;
-}
-.smg-guide .smg-footer strong {
-  color: rgba(255,255,255,0.8);
-}
+html{font-size:15px;-webkit-text-size-adjust:100%}
+body{font-family:'IBM Plex Sans',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--fg);min-height:100vh;padding:0;line-height:1.5}
+.s-header{background:var(--maroon);color:#fff;padding:1.4rem 1.25rem 1.2rem;position:relative;overflow:hidden}
+.s-header::after{content:'';position:absolute;top:-30px;right:-30px;width:160px;height:160px;border-radius:50%;background:rgba(200,169,110,0.10);pointer-events:none}
+.s-header-inner{max-width:920px;margin:0 auto;position:relative;z-index:1}
+.s-eyebrow{display:block;font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:#c8a96e;margin-bottom:0.3rem}
+.s-title{display:block;font-family:'EB Garamond',Georgia,serif;font-size:clamp(1.35rem,4vw,1.85rem);font-weight:600;color:#fff;line-height:1.2}
+.s-subtitle{display:block;font-size:0.82rem;color:rgba(255,255,255,0.70);margin-top:0.35rem;font-style:italic}
+.s-main{max-width:920px;margin:0 auto;padding:1.25rem 1rem 2rem}
+.card{background:var(--surface);border:1px solid var(--bdr);border-radius:10px;padding:1.25rem;margin-bottom:1rem;box-shadow:0 1px 4px rgba(80,18,20,0.07)}
+.card-title{font-family:'EB Garamond',Georgia,serif;font-size:1.15rem;font-weight:600;color:var(--maroon);margin-bottom:0.75rem;line-height:1.3}
+.s-label{display:block;font-size:0.78rem;font-weight:500;color:var(--dim);letter-spacing:0.02em;margin-bottom:0.3rem}
+input[type=text],input[type=number],select{display:block;width:100%;padding:0.6rem 0.75rem;border:1.5px solid var(--bdr);border-radius:6px;background:#fff;font-family:'IBM Plex Mono',monospace;font-size:0.9rem;color:var(--fg);transition:border-color .15s,box-shadow .15s;-webkit-appearance:none;appearance:none;line-height:1.4}
+input[type=range]{width:100%;accent-color:var(--maroon)}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23501214' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.75rem center;padding-right:2rem;font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:0.85rem;cursor:pointer}
+input:focus,select:focus{outline:none;border-color:var(--maroon);box-shadow:0 0 0 3px rgba(80,18,20,0.10)}
+input::placeholder{color:#b5a99a}
+.s-row{display:flex;gap:.75rem;align-items:flex-end;flex-wrap:wrap}
+.s-row>*{flex:1;min-width:0}
+.s-field{display:flex;flex-direction:column;gap:0.3rem;margin-bottom:0.75rem}
+.s-field:last-child{margin-bottom:0}
+.btn{display:inline-flex;align-items:center;gap:0.4rem;padding:0.55rem 1.1rem;border-radius:6px;border:none;font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:0.83rem;font-weight:500;cursor:pointer;transition:background .15s,transform .1s;touch-action:manipulation;-webkit-appearance:none;line-height:1.4}
+.btn:active{transform:scale(0.97)}
+.btn-primary{background:var(--maroon);color:#fff}.btn-primary:hover{background:#6b1a1d}
+.btn-ghost{background:transparent;color:var(--dim);border:1.5px solid var(--bdr)}.btn-ghost:hover{border-color:var(--maroon);color:var(--maroon)}
+.btn-gold{background:var(--gold);color:#fff}.btn-gold:hover{background:#564530}
+.btn-sm{padding:.4rem .7rem;font-size:.78rem}
+.btn-row{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.5rem}
+.drop-zone{border:2px dashed var(--bdr);border-radius:10px;padding:2rem 1rem;text-align:center;cursor:pointer;transition:all .2s;background:rgba(80,18,20,0.03)}
+.drop-zone.over{background:rgba(106,86,56,0.08);border-color:var(--gold)}
+.drop-zone p{font-family:'EB Garamond',Georgia,serif;font-size:1.05rem;color:var(--maroon);font-weight:600}
+.drop-zone small{font-family:'IBM Plex Mono',monospace;color:var(--dim);font-size:0.72rem;display:block;margin-top:0.25rem}
+#fileInput{display:none}
+.plot-wrap{position:relative;width:100%;background:#fff;border:1px solid rgba(80,18,20,.15);border-radius:6px;overflow:hidden;touch-action:none}
+canvas{display:block;width:100%;height:auto}
+.result-card{background:#fdf6ec;border:1.5px solid var(--gold);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1rem}
+.result-card-title{display:block;font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem}
+.result-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem}
+.result-item{background:rgba(80,18,20,0.04);border-radius:6px;padding:.55rem .6rem}
+.result-item .rlabel{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--dim)}
+.result-item .rval{font-family:'IBM Plex Mono',monospace;font-size:0.95rem;font-weight:600;color:var(--maroon);margin-top:.15rem}
+.help-text{font-size:0.78rem;color:var(--dim);margin-top:.25rem;font-style:italic}
+.status-bar{font-size:0.78rem;padding:.4rem .6rem;background:rgba(80,18,20,0.05);border-left:3px solid var(--maroon);border-radius:0 6px 6px 0;margin-top:.5rem;font-family:'IBM Plex Mono',monospace;color:var(--maroon)}
+.toggle-row{display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem;font-size:.82rem;color:var(--dim);flex-wrap:wrap}
+.toggle-row input[type=checkbox]{width:16px;height:16px;accent-color:var(--maroon)}
+.hidden{display:none}
+.range-values,.param-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem}
+.range-box{background:rgba(80,18,20,0.04);border:1px solid var(--bdr);border-radius:6px;padding:.45rem .55rem}
+.range-box .mini{font-size:.72rem;color:var(--dim);text-transform:uppercase;letter-spacing:.05em}
+.range-box .val{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--maroon);margin-top:.15rem}
+.peak-table{width:100%;border-collapse:collapse;font-size:.84rem;margin-top:.5rem}
+.peak-table th,.peak-table td{border-bottom:1px solid rgba(80,18,20,.12);padding:.45rem;text-align:left}
+.peak-table th{color:var(--maroon);font-weight:600}
+.review-controls{margin-top:.8rem}
+.review-group{border:1px solid rgba(80,18,20,.12);border-radius:8px;padding:.75rem;margin-top:.6rem;background:rgba(80,18,20,.02)}
+.review-group-title{font-weight:600;color:var(--maroon);margin-bottom:.45rem}
+.s-footer{background:var(--maroon-dark);color:rgba(255,255,255,0.55);text-align:center;padding:1.25rem 1rem;font-size:0.72rem;line-height:1.7;margin-top:1rem}
+.s-footer strong{color:rgba(255,255,255,0.8)}
+@media(max-width:640px){.result-grid{grid-template-columns:1fr}.s-row{flex-direction:column}.s-row>*{width:100%}.range-values,.param-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
-<div class="smg-guide">
-
-<div class="smg-header">
-  <span class="smg-eyebrow">SUPERMAG Lab &middot; Department of Physics &middot; Texas State University</span>
-  <span class="smg-h1">XRD Peak Fitting Applet &mdash; User Guide</span>
-  <span class="smg-header-sub">Interactive 2&theta;&ndash;&omega; peak fitting for thin-film X-ray diffraction with local background fitting, visual reference overlays, Bragg d-spacing, Scherrer size, and CSV export</span>
+<div class="s-header"><div class="s-header-inner"><span class="s-eyebrow">SUPERMAG Lab · Texas State University</span><span class="s-title">XRD Peak Fitting Applet</span><span class="s-subtitle">Interactive local fitting of thin-film 2θ–ω diffraction peaks</span></div></div>
+<div class="s-main">
+<div class="card">
+<div class="card-title">Load Data</div>
+<div class="drop-zone" id="dropZone"><p>Tap to browse or drag &amp; drop</p><small>Rigaku (.ras/.asc) · Bruker (.dql/.raw) · CSV/TXT</small></div>
+<input type="file" id="fileInput" accept=".ras,.asc,.dql,.raw,.csv,.txt,.dat,.xy">
+<div id="fileStatus" class="status-bar hidden"></div>
 </div>
 
-<div class="smg-main">
-
-<span class="smg-h2">Overview</span>
-
-<p class="smg-p">XRD Peak Fitting Applet is a browser-based tool for analyzing conventional thin-film <span class="smg-mono">2&theta;&ndash;&omega;</span> X-ray diffraction scans. It preserves the simple single-file workflow of the SUPERMAG applets: open the HTML file in a modern browser, load a diffraction file, inspect the full scan on a log-intensity plot, choose a local fitting window, fit one or more peaks together with a local background, review the fit, and export both the fit trace and a peak-summary table.</p>
-
-<p class="smg-p">The app is intentionally narrow in scope. It is not a full phase-identification or refinement package. It is meant for the common thin-film use case where the user already knows the likely substrate and film, wants to isolate one local region of the scan, fit the peak shape cleanly, and extract quantities such as center position, FWHM, Bragg <span class="smg-mono">d</span>-spacing, and approximate Scherrer size.</p>
-
-<div class="smg-info"><span class="smg-strong">Quick start:</span> Load an XRD file &rarr; choose optional substrate and film overlays &rarr; define the fit range on the main log-intensity plot &rarr; select number of peaks, model, and background type &rarr; click <span class="smg-mono">Fit Selected Range</span> &rarr; inspect the fit review plot &rarr; adjust parameters and refit if needed &rarr; export the overlay CSV and summary CSV.</div>
-
-<span class="smg-h2">Workflow</span>
-
-<p class="smg-p">The app is organized as a simple four-stage workflow. The emphasis is on manual control and local fitting rather than automated indexing or full-pattern processing.</p>
-
-<div class="smg-card">
-  <div class="smg-mod-heading">
-    <span class="smg-badge">1</span>
-    <span class="smg-mod-title">Load Data</span>
-  </div>
-  <p class="smg-p">Load a diffraction file by drag-and-drop or by tapping the file picker. The app supports the same basic raw loader style as the existing SUPERMAG applets, including Rigaku and generic text-based exports. The parsed scan is then plotted as intensity versus <span class="smg-mono">2&theta;</span>.</p>
-  <p class="smg-p">The full scan is displayed on a logarithmic intensity axis by default. To keep the display usable, any intensity values below <span class="smg-mono">1e-2</span>, including zero or negative values, are floored to <span class="smg-mono">1e-2</span> for plotting only. The raw data are preserved internally for the fit calculations.</p>
-  <div class="smg-note"><span class="smg-strong">Intended scan type:</span> The app is designed for standard symmetric <span class="smg-mono">2&theta;&ndash;&omega;</span> scans. It does not currently branch into rocking curves, reciprocal-space maps, pole figures, or reflectivity analysis.</div>
+<div class="card hidden" id="plotCard">
+<div class="card-title">XRD Pattern</div>
+<div class="s-row">
+<div class="s-field"><label class="s-label" for="substrateSelect">Substrate</label><select id="substrateSelect"></select></div>
+<div class="s-field"><label class="s-label" for="filmSelect">Film</label><select id="filmSelect"></select></div>
+</div>
+<div class="toggle-row">
+<input type="checkbox" id="logToggle" checked><label for="logToggle" style="margin:0">Log intensity</label>
+<input type="checkbox" id="labelToggle"><label for="labelToggle" style="margin:0">Show hkl labels</label>
+</div>
+<div class="plot-wrap"><canvas id="mainCanvas" width="1400" height="700"></canvas></div>
+<p class="help-text">Use the range sliders or click “Use current view” to define the local 2θ region to fit. Reference lines from the substrate and film menus are visual guides only.</p>
+<div class="btn-row">
+<button class="btn btn-ghost btn-sm" id="resetZoomBtn">Reset zoom</button>
+<button class="btn btn-ghost btn-sm" id="useViewBtn">Use current view as fit range</button>
+</div>
 </div>
 
-<div class="smg-card">
-  <div class="smg-mod-heading">
-    <span class="smg-badge">2</span>
-    <span class="smg-mod-title">Reference Overlays and Fit-Range Selection</span>
-  </div>
-  <p class="smg-p">Two dropdowns are provided for visual guidance only: <span class="smg-mono">Substrate</span> and <span class="smg-mono">Film</span>. When selected, the app overlays expected peak-position markers from a small internal reference library containing common SUPERMAG materials.</p>
-  <p class="smg-p">These overlays are advisory only. They do not constrain the fit, do not perform automatic indexing, and do not propagate into the reported fit parameters. Their purpose is simply to help the user see what peaks are expected in the selected region.</p>
-  <p class="smg-p">The user then defines the local fitting window on the main plot using the fit-range controls. The selected range should contain the peak or overlapping peaks of interest together with enough adjacent baseline to support a stable local background fit.</p>
-  <div class="smg-info"><span class="smg-strong">Recommended practice:</span> Choose a range that is wide enough to include the full peak tails and some background on each side, but not so wide that unrelated peaks or strong substrate features begin to dominate the local fit.</div>
+<div class="card hidden" id="rangeCard">
+<div class="card-title">Fit Range</div>
+<div class="s-row">
+<div class="s-field"><label class="s-label" for="rangeMinSlider">Range minimum</label><input type="range" id="rangeMinSlider"></div>
+<div class="s-field"><label class="s-label" for="rangeMaxSlider">Range maximum</label><input type="range" id="rangeMaxSlider"></div>
+</div>
+<div class="range-values">
+<div class="range-box"><div class="mini">2θ min</div><div class="val" id="rangeMinText">—</div></div>
+<div class="range-box"><div class="mini">2θ max</div><div class="val" id="rangeMaxText">—</div></div>
+</div>
+<div class="btn-row"><button class="btn btn-primary btn-sm" id="centerViewBtn">Center plot on fit range</button></div>
 </div>
 
-<div class="smg-card">
-  <div class="smg-mod-heading">
-    <span class="smg-badge">3</span>
-    <span class="smg-mod-title">Fit Setup</span>
-  </div>
-  <p class="smg-p">For the selected local window, choose the number of peaks and the peak model. The app supports one, two, or three peaks in the local region. This is intended to cover common cases such as an isolated film peak, a film peak overlapped with a substrate peak, or a weak shoulder adjacent to a stronger reflection.</p>
-  <p class="smg-p">The available model choices are:</p>
-  <ul class="smg-ul">
-    <li><span class="smg-strong">Gaussian</span> &mdash; useful for simple symmetric peaks dominated by Gaussian-like broadening.</li>
-    <li><span class="smg-strong">Lorentzian</span> &mdash; useful when tails are sharper and longer than a Gaussian profile.</li>
-    <li><span class="smg-strong">Pseudo-Voigt</span> &mdash; the default and generally preferred choice for routine thin-film XRD peak fitting.</li>
-  </ul>
-  <p class="smg-p">The background is fitted simultaneously with the peak model. The default background is <span class="smg-mono">constant</span>, with <span class="smg-mono">linear</span> available when a local slope is visibly needed.</p>
-
-  <div class="smg-formula">Local fit model:
-I(2&theta;) = B(2&theta;) + Σ P_i(2&theta;)
-
-Constant background:
-B(2&theta;) = c
-
-Linear background:
-B(2&theta;) = m(2&theta;) + c</div>
-
-  <p class="smg-p">Initial guesses are generated automatically from the selected window and the chosen number of peaks. These guesses are intended to seed the least-squares fit, not replace it.</p>
+<div class="card hidden" id="fitSetupCard">
+<div class="card-title">Fit Setup</div>
+<div class="s-row">
+<div class="s-field"><label class="s-label" for="wavelength">Wavelength (Å)</label><input type="number" id="wavelength" value="1.5406" step="0.0001"></div>
+<div class="s-field"><label class="s-label" for="numPeaks">Number of peaks</label><select id="numPeaks"><option value="1" selected>1</option><option value="2">2</option><option value="3">3</option></select></div>
+<div class="s-field"><label class="s-label" for="fitModel">Peak model</label><select id="fitModel"><option value="pvoigt" selected>Pseudo-Voigt</option><option value="gaussian">Gaussian</option><option value="lorentzian">Lorentzian</option></select></div>
+<div class="s-field"><label class="s-label" for="bgModel">Background</label><select id="bgModel"><option value="constant" selected>Constant</option><option value="linear">Linear</option></select></div>
+</div>
+<div class="btn-row"><button class="btn btn-primary" id="fitBtn">Fit Selected Range</button><button class="btn btn-ghost" id="resetBtn">Reset All</button></div>
 </div>
 
-<div class="smg-card">
-  <div class="smg-mod-heading">
-    <span class="smg-badge">4</span>
-    <span class="smg-mod-title">Fit Review and Manual Refinement</span>
-  </div>
-  <p class="smg-p">After clicking <span class="smg-mono">Fit Selected Range</span>, the app opens a fit-review panel showing only the selected local range. The review plot overlays the raw data, the total fitted curve, the local background, and the individual peak components.</p>
-  <p class="smg-p">The user can then manually adjust the fit parameters and refit from those values. This is useful when the automatic initial guesses are close but not ideal, especially for overlapping peaks or asymmetric local intensity distributions.</p>
-  <p class="smg-p">Typical adjustable parameters include peak center, amplitude or height, width, and the pseudo-Voigt mixing parameter when that model is selected. Background parameters are also editable. The standard workflow is:</p>
-  <ul class="smg-ul">
-    <li>inspect the first-pass fit</li>
-    <li>adjust parameters if needed</li>
-    <li>refit from the edited values</li>
-    <li>accept the fit and move to results/export</li>
-  </ul>
-  <div class="smg-note"><span class="smg-strong">Fit philosophy:</span> The app is designed as an interactive local fitting tool. The sliders and numeric controls are there to improve the fit seed and guide the optimizer, not to replace the least-squares fit with a manual trace overlay.</div>
+<div class="card hidden" id="reviewCard">
+<div class="card-title">Fit Review</div>
+<div class="plot-wrap"><canvas id="reviewCanvas" width="1400" height="700"></canvas></div>
+<div class="review-controls" id="reviewControls"></div>
+<div class="btn-row"><button class="btn btn-primary" id="refitBtn">Refit from Current Values</button><button class="btn btn-ghost" id="resetGuessBtn">Reset Guesses</button><button class="btn btn-gold" id="acceptFitBtn">Accept Fit</button></div>
 </div>
 
-<span class="smg-h2">Physics &amp; Calculation Details</span>
-
-<div class="smg-card">
-  <div class="smg-mod-heading">
-    <span class="smg-mod-title">Peak Position and Bragg d-Spacing</span>
-  </div>
-  <p class="smg-p">For each fitted peak, the app reports the fitted center in <span class="smg-mono">2&theta;</span> and calculates the corresponding interplanar spacing <span class="smg-mono">d</span> using Bragg's law with the standard crystallographic convention <span class="smg-mono">n = 1</span>.</p>
-
-  <div class="smg-formula">Bragg law:
-&lambda; = 2 d sin&theta;
-
-with
-&theta; = (2&theta;) / 2</div>
-
-  <p class="smg-p">The reported <span class="smg-mono">d</span>-spacing is therefore:</p>
-
-  <div class="smg-formula">d = &lambda; / (2 sin&theta;)</div>
-
-  <p class="smg-p">The wavelength is user-editable and defaults to the Cu K&alpha; value used in the app settings. The app does not attempt to infer crystal structure or assign Miller indices automatically; that interpretation remains with the user.</p>
+<div class="result-card hidden" id="resultsCard">
+<span class="result-card-title">Results</span>
+<div class="result-grid" id="resultGrid"></div>
+<table class="peak-table" id="peakTable"></table>
+<div class="btn-row"><button class="btn btn-gold btn-sm" id="exportOverlayBtn">Export Fit Overlay CSV</button><button class="btn btn-gold btn-sm" id="exportSummaryBtn">Export Summary CSV</button></div>
 </div>
-
-<div class="smg-card">
-  <div class="smg-mod-heading">
-    <span class="smg-mod-title">Peak Width and Scherrer Size</span>
-  </div>
-  <p class="smg-p">For each fitted peak, the app reports the fitted FWHM and uses it to estimate a Scherrer size. The Scherrer calculation uses <span class="smg-mono">K = 0.9</span>.</p>
-
-  <div class="smg-formula">Scherrer equation:
-D = K &lambda; / (&beta; cos&theta;)
-
-with
-K = 0.9</div>
-
-  <p class="smg-p">Here <span class="smg-mono">&beta;</span> is the peak broadening in radians derived from the fitted FWHM. In the current app, the Scherrer result is reported as an approximate, uncorrected size.</p>
-  <div class="smg-note"><span class="smg-strong">Scherrer note:</span> The reported Scherrer value is approximate and does not include instrumental-broadening correction. It should be interpreted as a quick comparative metric rather than a definitive crystallite size.</div>
 </div>
+<div class="s-footer"><strong>SUPERMAG Lab</strong> — Department of Physics, Texas State University<br>This tool is provided as-is for educational and research use, without guarantee or warranty. Users should independently verify all outputs, including Bragg and Scherrer estimates.</div>
+<script>
+"use strict";
+let rawData=[], fileName='';
+let viewXMin, viewXMax, viewYMin, viewYMax, logScale=true;
+let fitRange={min:null,max:null};
+let reviewState=null, acceptedFit=null, initialSeed=null;
+const refLibrary={
+  substrate:{
+    'None':[],
+    'MgO':[ {tt:42.90,hkl:'(002)'}, {tt:62.30,hkl:'(022)'} ],
+    'TiO2 (110)':[ {tt:27.45,hkl:'(110)'}, {tt:56.64,hkl:'(220)'} ],
+    'TiO2 (001)':[ {tt:37.80,hkl:'(101)'}, {tt:80.10,hkl:'(202)'} ],
+    'Al2O3 (0001)':[ {tt:41.68,hkl:'(0006)'}, {tt:90.74,hkl:'(00012)'} ],
+    'Si (001)':[ {tt:33.04,hkl:'(002)'}, {tt:69.13,hkl:'(004)'} ]
+  },
+  film:{
+    'None':[],
+    'Nb':[ {tt:38.47,hkl:'(110)'}, {tt:55.46,hkl:'(200)'}, {tt:69.58,hkl:'(211)'} ],
+    'Au':[ {tt:38.18,hkl:'(111)'}, {tt:44.39,hkl:'(200)'}, {tt:64.58,hkl:'(220)'}, {tt:77.55,hkl:'(311)'} ],
+    'Pt':[ {tt:39.76,hkl:'(111)'}, {tt:46.24,hkl:'(200)'}, {tt:67.45,hkl:'(220)'}, {tt:81.28,hkl:'(311)'} ],
+    'Cu':[ {tt:43.30,hkl:'(111)'}, {tt:50.43,hkl:'(200)'}, {tt:74.13,hkl:'(220)'} ],
+    'Co (fcc)':[ {tt:44.22,hkl:'(111)'}, {tt:51.52,hkl:'(200)'}, {tt:75.86,hkl:'(220)'} ],
+    'RuO2':[ {tt:28.05,hkl:'(110)'}, {tt:35.06,hkl:'(101)'}, {tt:39.96,hkl:'(200)'}, {tt:54.33,hkl:'(211)'}, {tt:69.32,hkl:'(301)'} ],
+    'NbN':[ {tt:36.70,hkl:'(111)'}, {tt:42.57,hkl:'(200)'}, {tt:61.85,hkl:'(220)'}, {tt:74.05,hkl:'(311)'} ],
+    'NbTiN':[ {tt:36.9,hkl:'(111)'}, {tt:42.8,hkl:'(200)'}, {tt:62.1,hkl:'(220)'} ],
+    'GdN':[ {tt:31.25,hkl:'(111)'}, {tt:36.23,hkl:'(200)'}, {tt:52.35,hkl:'(220)'}, {tt:63.10,hkl:'(311)'} ],
+    'Mn5Si3':[ {tt:27.7,hkl:'(111)'}, {tt:37.9,hkl:'(221)'}, {tt:42.4,hkl:'(002)'}, {tt:48.8,hkl:'(320)'} ]
+  }
+};
 
-<div class="smg-card">
-  <div class="smg-mod-heading">
-    <span class="smg-mod-title">Supported Line Shapes</span>
-  </div>
-  <p class="smg-p">The pseudo-Voigt model combines Gaussian-like and Lorentzian-like broadening in a single practical fitting form. For most thin-film XRD peaks in routine laboratory data, this is the preferred default.</p>
-  <p class="smg-p">Gaussian and Lorentzian remain available for cases where a simpler fixed line shape is desired or where a direct comparison between models is useful.</p>
-</div>
+const $=id=>document.getElementById(id);
+const dropZone=$('dropZone'), fileInput=$('fileInput'), fileStatus=$('fileStatus');
+const plotCard=$('plotCard'), rangeCard=$('rangeCard'), fitSetupCard=$('fitSetupCard'), reviewCard=$('reviewCard'), resultsCard=$('resultsCard');
+const mainCanvas=$('mainCanvas'), reviewCanvas=$('reviewCanvas');
+const ctx=mainCanvas.getContext('2d'), rctx=reviewCanvas.getContext('2d');
+const PAD={l:58,r:16,t:16,b:40}, DPR=window.devicePixelRatio||1;
 
-<span class="smg-h2">Reference Overlay Library</span>
+function populateSelect(sel, obj){ sel.innerHTML=''; Object.keys(obj).forEach(k=>{const o=document.createElement('option');o.value=k;o.textContent=k;sel.appendChild(o);}); }
+populateSelect($('substrateSelect'), refLibrary.substrate); populateSelect($('filmSelect'), refLibrary.film);
 
-<p class="smg-p">The app includes a small built-in peak-position library for common substrates and films used in SUPERMAG workflows. Each entry contains only a material name, expected <span class="smg-mono">2&theta;</span> peak positions, and associated <span class="smg-mono">hkl</span> labels.</p>
+// File handling
+ dropZone.addEventListener('click',()=>fileInput.click());
+ dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('over')});
+ dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('over'));
+ dropZone.addEventListener('drop',e=>{e.preventDefault();dropZone.classList.remove('over');handleFile(e.dataTransfer.files[0])});
+ fileInput.addEventListener('change',e=>{if(e.target.files[0])handleFile(e.target.files[0])});
+ function showStatus(msg){fileStatus.textContent=msg;fileStatus.classList.remove('hidden')}
+ function handleFile(file){
+  const reader=new FileReader();
+  reader.onload=e=>{
+   const txt=e.target.result; const name=file.name.toLowerCase();
+   try{
+    if(name.endsWith('.ras')) rawData=parseRAS(txt);
+    else if(name.endsWith('.asc')) rawData=parseASC(txt);
+    else if(name.endsWith('.dql')||name.endsWith('.raw')) rawData=parseBruker(txt);
+    else rawData=parseGeneric(txt);
+    if(rawData.length<10) throw new Error('Too few data points');
+    rawData=rawData.filter(d=>isFinite(d.twoTheta)&&isFinite(d.intensity)).sort((a,b)=>a.twoTheta-b.twoTheta);
+    fileName=file.name;
+    resetView(); setDefaultRange(); acceptedFit=null; reviewState=null;
+    showStatus(file.name+' — '+rawData.length+' points loaded');
+    plotCard.classList.remove('hidden'); rangeCard.classList.remove('hidden'); fitSetupCard.classList.remove('hidden');
+    reviewCard.classList.add('hidden'); resultsCard.classList.add('hidden');
+    configureRangeSliders(); drawMain(); updateRangeReadout();
+   }catch(err){showStatus('Error: '+err.message)}
+  };
+  reader.readAsText(file);
+ }
+ function parseRAS(txt){const lines=txt.replace(/\r/g,'').split('\n');let inData=false,pts=[];for(const l of lines){if(l.trim()==='*RAS_INT_START'){inData=true;continue} if(l.trim()==='*RAS_INT_END'||l.trim()==='*RAS_DATA_END') break; if(inData){const p=l.trim().split(/\s+/); if(p.length>=2){const t=parseFloat(p[0]),i=parseFloat(p[1]); if(isFinite(t)&&isFinite(i)) pts.push({twoTheta:t,intensity:i});}}} return pts;}
+ function parseASC(txt){const lines=txt.replace(/\r/g,'').split('\n'); let start=null,step=null,pts=[],inData=false; for(const l of lines){ if(l.startsWith('*START')) start=parseFloat(l.split('=')[1]); if(l.startsWith('*STEP')) step=parseFloat(l.split('=')[1]); if(l.startsWith('*COUNT')){inData=true;continue} if(inData&&start!=null&&step!=null){ const vals=l.split(',').map(s=>s.trim()).filter(Boolean).map(Number); for(const v of vals){ if(isFinite(v)) pts.push({twoTheta:start+pts.length*step,intensity:v});}} } return pts; }
+ function parseBruker(txt){const lines=txt.replace(/\r/g,'').split('\n'); let start=null,step=null,inData=false,pts=[],hasAngleCol=false; for(const l of lines){ const lt=l.trim(); if(lt.startsWith('Start=')) start=parseFloat(lt.split('=')[1]); if(lt.startsWith('Increment=')) step=parseFloat(lt.split('=')[1]); if(lt==='[Data]'){inData=true;continue} if(inData){ if(lt.toLowerCase().includes('angle')){hasAngleCol=true;continue} if(!lt) continue; const parts=lt.split(',').map(s=>s.trim()); if(hasAngleCol&&parts.length>=2){ const t=parseFloat(parts[0]),i=parseFloat(parts[1]); if(isFinite(t)&&isFinite(i)) pts.push({twoTheta:t,intensity:i}); } else if(start!=null&&step!=null){ const v=parseFloat(parts[0]); if(isFinite(v)) pts.push({twoTheta:start+pts.length*step,intensity:v}); } } } return pts; }
+ function parseGeneric(txt){const lines=txt.replace(/\r/g,'').split('\n'); const pts=[]; for(const l of lines){ const lt=l.trim(); if(!lt||lt.startsWith('#')||lt.startsWith(';')||lt.startsWith('*')||/^[a-zA-Z]/.test(lt)) continue; const parts=lt.split(/[\s,;\t]+/).map(Number); if(parts.length>=2&&isFinite(parts[0])&&isFinite(parts[1])) pts.push({twoTheta:parts[0],intensity:parts[1]}); } return pts; }
 
-<p class="smg-p">This library is intentionally limited. It is not a full searchable diffraction database, and it does not perform phase scoring or automatic indexing. It is a plotting aid only.</p>
+// Plot helpers
+function setupCanvas(c){ const w=c.parentElement.clientWidth; const h=Math.round(w*0.52); c.style.width=w+'px'; c.style.height=h+'px'; c.width=w*DPR; c.height=h*DPR; return {w,h}; }
+const LOG_FLOOR = 1e-2;
+function yValue(intensity){ if(logScale) return Math.log10(Math.max(intensity,LOG_FLOOR)); return intensity; }
+function resetView(){ if(!rawData.length) return; viewXMin=rawData[0].twoTheta; viewXMax=rawData[rawData.length-1].twoTheta; const ys=rawData.map(d=>yValue(d.intensity)); viewYMin=Math.min(...ys); viewYMax=Math.max(...ys); const dy=viewYMax-viewYMin||1; viewYMin-=0.03*dy; viewYMax+=0.05*dy; }
+function setDefaultRange(){ if(!rawData.length) return; const min=rawData[0].twoTheta, max=rawData[rawData.length-1].twoTheta; const span=max-min; fitRange.min=min+0.35*span; fitRange.max=min+0.45*span; }
+function toCanvas(x,y,w,h){ return { x:PAD.l+(x-viewXMin)/(viewXMax-viewXMin)*(w-PAD.l-PAD.r), y:PAD.t+(viewYMax-y)/(viewYMax-viewYMin)*(h-PAD.t-PAD.b) }; }
+function fromCanvas(cx,cy,w,h){ const x=viewXMin+(cx-PAD.l)/(w-PAD.l-PAD.r)*(viewXMax-viewXMin); const y=viewYMax-(cy-PAD.t)/(h-PAD.t-PAD.b)*(viewYMax-viewYMin); return {x,y}; }
+function nearestDataX(x){ let best=rawData[0], bd=Math.abs(rawData[0].twoTheta-x); for(const d of rawData){ const dd=Math.abs(d.twoTheta-x); if(dd<bd){bd=dd; best=d;} } return best.twoTheta; }
+function drawAxes(c,w,h,xlab,ylab,xMin,xMax,yMin,yMax){ c.strokeStyle='rgba(80,18,20,.2)'; c.lineWidth=1; c.strokeRect(PAD.l,PAD.t,w-PAD.l-PAD.r,h-PAD.t-PAD.b); c.fillStyle=getComputedStyle(document.body).getPropertyValue('color'); c.font='11px system-ui,sans-serif'; c.textAlign='center'; c.textBaseline='top'; for(let i=0;i<=6;i++){ const v=xMin+(xMax-xMin)*i/6; const x=PAD.l+(w-PAD.l-PAD.r)*i/6; c.fillText(v.toFixed(1),x,h-PAD.b+4); c.beginPath(); c.moveTo(x,h-PAD.b); c.lineTo(x,h-PAD.b+3); c.stroke(); } c.fillText(xlab,(PAD.l+w-PAD.r)/2,h-18); c.textAlign='right'; c.textBaseline='middle'; for(let i=0;i<=5;i++){ const v=yMin+(yMax-yMin)*i/5; const y=PAD.t+(h-PAD.t-PAD.b)*(1-i/5); const txt=logScale?(v<=Math.log10(LOG_FLOOR)+1e-9 ? '1e-2' : ('1e'+v.toFixed(0))):v.toExponential(0); c.fillText(txt,PAD.l-6,y); if(i>0&&i<5){ c.save(); c.strokeStyle='rgba(80,18,20,.06)'; c.beginPath(); c.moveTo(PAD.l,y); c.lineTo(w-PAD.r,y); c.stroke(); c.restore(); } } c.save(); c.translate(14,(PAD.t+h-PAD.b)/2); c.rotate(-Math.PI/2); c.textAlign='center'; c.textBaseline='middle'; c.fillText(ylab,0,0); c.restore(); }
+function drawMain(){ if(!rawData.length) return; const {w,h}=setupCanvas(mainCanvas); const c=ctx; c.setTransform(DPR,0,0,DPR,0,0); c.clearRect(0,0,w,h); drawAxes(c,w,h,'2θ (°)',logScale?'log₁₀(Intensity)':'Intensity',viewXMin,viewXMax,viewYMin,viewYMax);
+ c.beginPath(); c.strokeStyle=getComputedStyle(document.documentElement).getPropertyValue('--maroon')||'#501214'; c.lineWidth=1.2; let started=false; for(const d of rawData){ if(d.twoTheta<viewXMin||d.twoTheta>viewXMax) continue; const yy=yValue(d.intensity); const p=toCanvas(d.twoTheta,yy,w,h); if(!started){ c.moveTo(p.x,p.y); started=true; } else c.lineTo(p.x,p.y); } c.stroke();
+ drawReferenceMarkers(c,w,h); drawFitRangeOverlay(c,w,h); }
+function drawReferenceMarkers(c,w,h){ const showLabels=$('labelToggle').checked; const sets=[{data:refLibrary.substrate[$('substrateSelect').value], color:'#6A5638'},{data:refLibrary.film[$('filmSelect').value], color:'#1f5c5c'}]; c.save(); c.font='10px IBM Plex Mono, monospace'; c.textAlign='left'; c.textBaseline='top'; sets.forEach(set=>{ (set.data||[]).forEach(pk=>{ if(pk.tt<viewXMin||pk.tt>viewXMax) return; const x=PAD.l+(pk.tt-viewXMin)/(viewXMax-viewXMin)*(w-PAD.l-PAD.r); c.strokeStyle=set.color; c.lineWidth=1; c.beginPath(); c.moveTo(x,PAD.t); c.lineTo(x,h-PAD.b); c.stroke(); if(showLabels){ c.fillStyle=set.color; c.fillText(pk.hkl,x+3,PAD.t+4); } }); }); c.restore(); }
+function drawFitRangeOverlay(c,w,h){ if(fitRange.min==null||fitRange.max==null) return; const x1=PAD.l+(fitRange.min-viewXMin)/(viewXMax-viewXMin)*(w-PAD.l-PAD.r); const x2=PAD.l+(fitRange.max-viewXMin)/(viewXMax-viewXMin)*(w-PAD.l-PAD.r); c.save(); c.fillStyle='rgba(106,86,56,0.10)'; c.fillRect(Math.min(x1,x2),PAD.t,Math.abs(x2-x1),h-PAD.t-PAD.b); c.strokeStyle='#6A5638'; c.lineWidth=1.5; [x1,x2].forEach(x=>{ c.beginPath(); c.moveTo(x,PAD.t); c.lineTo(x,h-PAD.b); c.stroke(); }); c.restore(); }
+function updateRangeReadout(){ $('rangeMinText').textContent=fitRange.min!=null?fitRange.min.toFixed(3)+'°':'—'; $('rangeMaxText').textContent=fitRange.max!=null?fitRange.max.toFixed(3)+'°':'—'; }
+function configureRangeSliders(){ if(!rawData.length) return; const n=rawData.length-1; ['rangeMinSlider','rangeMaxSlider'].forEach(id=>{ const el=$(id); el.min=0; el.max=n; el.step=1; }); $('rangeMinSlider').value=findNearestIndex(fitRange.min); $('rangeMaxSlider').value=findNearestIndex(fitRange.max); }
+function findNearestIndex(x){ let bi=0, bd=Math.abs(rawData[0].twoTheta-x); for(let i=1;i<rawData.length;i++){ const dd=Math.abs(rawData[i].twoTheta-x); if(dd<bd){ bd=dd; bi=i; } } return bi; }
+function syncRangeFromSliders(){ let i1=parseInt($('rangeMinSlider').value), i2=parseInt($('rangeMaxSlider').value); if(i1>=i2){ if(event&&event.target&&event.target.id==='rangeMinSlider') i1=i2-1; else i2=i1+1; $('rangeMinSlider').value=Math.max(0,i1); $('rangeMaxSlider').value=Math.min(rawData.length-1,i2); }
+ i1=parseInt($('rangeMinSlider').value); i2=parseInt($('rangeMaxSlider').value); fitRange.min=rawData[i1].twoTheta; fitRange.max=rawData[i2].twoTheta; updateRangeReadout(); drawMain(); }
+$('rangeMinSlider').addEventListener('input',syncRangeFromSliders); $('rangeMaxSlider').addEventListener('input',syncRangeFromSliders);
+$('centerViewBtn').addEventListener('click',()=>{ const pad=0.2*(fitRange.max-fitRange.min); viewXMin=fitRange.min-pad; viewXMax=fitRange.max+pad; const subset=getRangeData(fitRange.min,fitRange.max); const ys=subset.map(d=>yValue(d.intensity)); if(ys.length){ viewYMin=Math.min(...ys); viewYMax=Math.max(...ys); const dy=viewYMax-viewYMin||1; viewYMin-=0.08*dy; viewYMax+=0.12*dy;} drawMain(); });
+$('useViewBtn').addEventListener('click',()=>{ fitRange.min=nearestDataX(viewXMin); fitRange.max=nearestDataX(viewXMax); if(fitRange.min>=fitRange.max){ setDefaultRange(); } configureRangeSliders(); updateRangeReadout(); drawMain(); });
+$('resetZoomBtn').addEventListener('click',()=>{ resetView(); drawMain(); });
+$('logToggle').addEventListener('change',e=>{ logScale=e.target.checked; resetView(); drawMain(); if(reviewState) drawReview(); });
+$('labelToggle').addEventListener('change',drawMain); $('substrateSelect').addEventListener('change',drawMain); $('filmSelect').addEventListener('change',drawMain);
+$('resetBtn').addEventListener('click',()=>{ rawData=[]; reviewState=null; acceptedFit=null; plotCard.classList.add('hidden'); rangeCard.classList.add('hidden'); fitSetupCard.classList.add('hidden'); reviewCard.classList.add('hidden'); resultsCard.classList.add('hidden'); fileStatus.classList.add('hidden'); });
 
-<div class="smg-table-wrap">
-  <table class="smg-table">
-    <thead><tr><th>Overlay element</th><th>Behavior</th></tr></thead>
-    <tbody>
-      <tr><td>Substrate dropdown</td><td>Shows expected substrate peak markers on the main plot</td></tr>
-      <tr><td>Film dropdown</td><td>Shows expected film peak markers on the main plot</td></tr>
-      <tr><td>None option</td><td>Removes the corresponding overlay entirely</td></tr>
-      <tr><td>Fit interaction</td><td>No effect on fit parameters or constraints</td></tr>
-      <tr><td>Indexing behavior</td><td>No automatic assignment; user interprets the peak identity</td></tr>
-    </tbody>
-  </table>
-</div>
+// Main plot pan/zoom adapted from original applet
+let pointerState=null; let activePointers=new Map();
+mainCanvas.addEventListener('pointerdown',onPointerDown,{passive:false}); mainCanvas.addEventListener('pointermove',onPointerMove,{passive:false}); mainCanvas.addEventListener('pointerup',onPointerUp,{passive:false}); mainCanvas.addEventListener('pointercancel',onPointerUp,{passive:false});
+mainCanvas.addEventListener('wheel',e=>{ e.preventDefault(); const w=mainCanvas.width/DPR,h=mainCanvas.height/DPR; const r=mainCanvas.getBoundingClientRect(); const cx=e.clientX-r.left, cy=e.clientY-r.top; const factor=e.deltaY>0?1.15:1/1.15; const fx=(cx-PAD.l)/(w-PAD.l-PAD.r), fy=1-(cy-PAD.t)/(h-PAD.t-PAD.b); const xr=viewXMax-viewXMin, yr=viewYMax-viewYMin; const nxr=xr*factor, nyr=yr*factor; const xc=viewXMin+fx*xr, yc=viewYMin+fy*yr; viewXMin=xc-fx*nxr; viewXMax=xc+(1-fx)*nxr; viewYMin=yc-fy*nyr; viewYMax=yc+(1-fy)*nyr; drawMain(); },{passive:false});
+function canvasCoords(e){ const r=mainCanvas.getBoundingClientRect(); return {x:e.clientX-r.left,y:e.clientY-r.top}; }
+function pDist(a,b){ return Math.hypot(a.x-b.x,a.y-b.y); } function pCenter(a,b){ return {x:(a.x+b.x)/2,y:(a.y+b.y)/2}; }
+function onPointerDown(e){ if(!rawData.length) return; e.preventDefault(); mainCanvas.setPointerCapture(e.pointerId); activePointers.set(e.pointerId,canvasCoords(e)); if(activePointers.size===1){ const c=canvasCoords(e); pointerState={type:'pending',x:c.x,y:c.y,vx0:viewXMin,vy0:viewYMin,vx1:viewXMax,vy1:viewYMax}; } else if(activePointers.size===2){ pointerState={type:'pinch',vx0:viewXMin,vy0:viewYMin,vx1:viewXMax,vy1:viewYMax}; pointerState.startPts=[...activePointers.values()]; pointerState.startDist=pDist(pointerState.startPts[0],pointerState.startPts[1]); } }
+function onPointerMove(e){ if(!activePointers.has(e.pointerId)) return; e.preventDefault(); activePointers.set(e.pointerId,canvasCoords(e)); const w=mainCanvas.width/DPR,h=mainCanvas.height/DPR; if(pointerState&&pointerState.type==='pending'){ const c=canvasCoords(e); if(Math.hypot(c.x-pointerState.x,c.y-pointerState.y)>5) pointerState.type='pan'; } if(pointerState&&pointerState.type==='pan'&&activePointers.size===1){ const c=canvasCoords(e); const dx=(c.x-pointerState.x)/(w-PAD.l-PAD.r)*(pointerState.vx1-pointerState.vx0); const dy=(c.y-pointerState.y)/(h-PAD.t-PAD.b)*(pointerState.vy1-pointerState.vy0); viewXMin=pointerState.vx0-dx; viewXMax=pointerState.vx1-dx; viewYMin=pointerState.vy0+dy; viewYMax=pointerState.vy1+dy; drawMain(); } if(pointerState&&pointerState.type==='pinch'&&activePointers.size===2){ const pts=[...activePointers.values()]; const dist=pDist(pts[0],pts[1]); const scale=pointerState.startDist/dist; const center=pCenter(pts[0],pts[1]); const fx=(center.x-PAD.l)/(w-PAD.l-PAD.r), fy=1-(center.y-PAD.t)/(h-PAD.t-PAD.b); const xr=pointerState.vx1-pointerState.vx0, yr=pointerState.vy1-pointerState.vy0; const nxr=xr*scale, nyr=yr*scale; const xc=pointerState.vx0+fx*xr, yc=pointerState.vy0+fy*yr; viewXMin=xc-fx*nxr; viewXMax=xc+(1-fx)*nxr; viewYMin=yc-fy*nyr; viewYMax=yc+(1-fy)*nyr; drawMain(); } }
+function onPointerUp(e){ e.preventDefault(); activePointers.delete(e.pointerId); if(activePointers.size===0) pointerState=null; else if(activePointers.size===1){ const c=[...activePointers.values()][0]; pointerState={type:'pan',x:c.x,y:c.y,vx0:viewXMin,vy0:viewYMin,vx1:viewXMax,vy1:viewYMax}; } }
 
-<span class="smg-h2">Data Format Requirements</span>
+// Fitting
+function getRangeData(min,max){ return rawData.filter(d=>d.twoTheta>=min&&d.twoTheta<=max); }
+function defaultWidthFromData(data){ if(data.length<2) return 0.2; const dx=(data[data.length-1].twoTheta-data[0].twoTheta)/(data.length-1); return Math.max(dx*6,0.05); }
+function gaussian(x,c,w){ const u=(x-c)/Math.max(w,1e-6); return Math.exp(-4*Math.log(2)*u*u); }
+function lorentzian(x,c,w){ const u=(x-c)/Math.max(w,1e-6); return 1/(1+4*u*u); }
+function pvoigt(x,c,w,eta){ eta=Math.min(1,Math.max(0,eta)); return eta*lorentzian(x,c,w)+(1-eta)*gaussian(x,c,w); }
+function peakShape(model,x,c,w,eta){ if(model==='gaussian') return gaussian(x,c,w); if(model==='lorentzian') return lorentzian(x,c,w); return pvoigt(x,c,w,eta); }
+function buildParamsFromVector(v, numPeaks, model, bgModel){ const p={bg0:v[0], bg1:bgModel==='linear'?v[1]:0, peaks:[]}; let idx=bgModel==='linear'?2:1; for(let i=0;i<numPeaks;i++){ const pk={amp:v[idx], center:v[idx+1], fwhm:Math.max(v[idx+2],1e-5), eta:model==='pvoigt'?Math.min(1,Math.max(0,v[idx+3])):0.5}; p.peaks.push(pk); idx += model==='pvoigt'?4:3; } return p; }
+function vectorFromParams(p, model, bgModel){ const v=[p.bg0]; if(bgModel==='linear') v.push(p.bg1); p.peaks.forEach(pk=>{ v.push(pk.amp, pk.center, pk.fwhm); if(model==='pvoigt') v.push(pk.eta); }); return v; }
+function modelY(x, params, model){ const xmid=reviewState?0.5*(reviewState.rangeMin+reviewState.rangeMax):x; let y=params.bg0 + params.bg1*(x-xmid); params.peaks.forEach(pk=>{ y += pk.amp*peakShape(model,x,pk.center,pk.fwhm,pk.eta); }); return y; }
+function objective(v, x, y, numPeaks, model, bgModel, rangeMin, rangeMax){ const p=buildParamsFromVector(v,numPeaks,model,bgModel); let pen=0; p.peaks.forEach(pk=>{ if(pk.center<rangeMin||pk.center>rangeMax) pen += 1e8*Math.abs(pk.center-(pk.center<rangeMin?rangeMin:rangeMax)); if(pk.fwhm<=0||pk.fwhm>(rangeMax-rangeMin)) pen += 1e8; if(pk.amp<0) pen += 1e8*Math.abs(pk.amp); if(model==='pvoigt'&&(pk.eta<0||pk.eta>1)) pen += 1e8; }); let s=0; for(let i=0;i<x.length;i++){ const yy=modelY(x[i],p,model); const r=yy-y[i]; s += r*r; } return s + pen; }
+function nelderMead(f, start, stepSizes, maxIter=400){ const n=start.length; let simplex=[start.slice()]; for(let i=0;i<n;i++){ const p=start.slice(); p[i]+=stepSizes[i]||1; simplex.push(p); }
+ let vals=simplex.map(f); const alpha=1,gamma=2,rho=0.5,sigma=0.5;
+ for(let iter=0; iter<maxIter; iter++){
+   const order=simplex.map((p,i)=>({p,v:vals[i]})).sort((a,b)=>a.v-b.v); simplex=order.map(o=>o.p); vals=order.map(o=>o.v);
+   const best=vals[0], worst=vals[n]; if(Math.max(...vals)-Math.min(...vals) < 1e-8*Math.max(1,best)) break;
+   const centroid=new Array(n).fill(0); for(let i=0;i<n;i++){ for(let j=0;j<n;j++) centroid[j]+=simplex[i][j]; } for(let j=0;j<n;j++) centroid[j]/=n;
+   const reflect=centroid.map((c,j)=>c+alpha*(c-simplex[n][j])); const fr=f(reflect);
+   if(fr<vals[0]){ const expand=centroid.map((c,j)=>c+gamma*(reflect[j]-c)); const fe=f(expand); if(fe<fr){ simplex[n]=expand; vals[n]=fe; } else { simplex[n]=reflect; vals[n]=fr; } continue; }
+   if(fr<vals[n-1]){ simplex[n]=reflect; vals[n]=fr; continue; }
+   let contract; if(fr<vals[n]) contract=centroid.map((c,j)=>c+rho*(reflect[j]-c)); else contract=centroid.map((c,j)=>c-rho*(c-simplex[n][j]));
+   const fc=f(contract); if(fc<vals[n]){ simplex[n]=contract; vals[n]=fc; continue; }
+   for(let i=1;i<n+1;i++){ simplex[i]=simplex[0].map((b,j)=>b+sigma*(simplex[i][j]-b)); vals[i]=f(simplex[i]); }
+ }
+ const order=simplex.map((p,i)=>({p,v:vals[i]})).sort((a,b)=>a.v-b.v); return {x:order[0].p, fx:order[0].v}; }
+function estimateArea(pk, model){ if(model==='gaussian') return pk.amp*pk.fwhm*Math.sqrt(Math.PI/(4*Math.log(2))); if(model==='lorentzian') return pk.amp*pk.fwhm*Math.PI/2; const gw=pk.fwhm*Math.sqrt(Math.PI/(4*Math.log(2))); const lw=pk.fwhm*Math.PI/2; return pk.amp*((1-pk.eta)*gw + pk.eta*lw); }
+function scherrerSize(fwhmDeg, centerDeg, lambda){ const beta=(fwhmDeg*Math.PI/180); const theta=centerDeg*Math.PI/360; const K=0.9; if(beta<=0||Math.cos(theta)===0) return NaN; return K*lambda/(beta*Math.cos(theta)); }
+function dSpacing(centerDeg, lambda){ const theta=centerDeg*Math.PI/360; return lambda/(2*Math.sin(theta)); }
+function createInitialGuess(data, numPeaks, model, bgModel){ const ys=data.map(d=>d.intensity), xs=data.map(d=>d.twoTheta); const xmid=0.5*(xs[0]+xs[xs.length-1]); const edgeN=Math.max(2,Math.floor(data.length*0.12)); const leftY=ys.slice(0,edgeN), rightY=ys.slice(-edgeN); const bg0=(median(leftY)+median(rightY))/2; const bg1=bgModel==='linear'?((median(rightY)-median(leftY))/Math.max(xs[xs.length-1]-xs[0],1e-6)):0;
+ const residuals=data.map(d=>d.intensity-(bg0+bg1*(d.twoTheta-xmid)));
+ let candidates=[]; for(let i=1;i<data.length-1;i++){ if(residuals[i]>=residuals[i-1]&&residuals[i]>=residuals[i+1]) candidates.push({i,val:residuals[i]}); }
+ candidates=candidates.sort((a,b)=>b.val-a.val);
+ const selected=[]; const minSep=Math.max((xs[xs.length-1]-xs[0])/(numPeaks+1)/3, defaultWidthFromData(data));
+ for(const c of candidates){ const xc=xs[c.i]; if(selected.every(s=>Math.abs(s.center-xc)>minSep)){ selected.push({center:xc, amp:Math.max(c.val,1), fwhm:minSep, eta:0.5}); if(selected.length===numPeaks) break; } }
+ while(selected.length<numPeaks){ const frac=(selected.length+1)/(numPeaks+1); selected.push({center:xs[0]+frac*(xs[xs.length-1]-xs[0]), amp:Math.max(...residuals,1)/Math.max(1,numPeaks), fwhm:minSep, eta:0.5}); }
+ selected.sort((a,b)=>a.center-b.center);
+ return {bg0,bg1,peaks:selected}; }
+function median(arr){ const s=arr.slice().sort((a,b)=>a-b); const m=Math.floor(s.length/2); return s.length%2?s[m]:0.5*(s[m-1]+s[m]); }
+function fitCurrentRange(seedParams=null){ const data=getRangeData(fitRange.min,fitRange.max); if(data.length<8){ alert('Selected range is too small for fitting.'); return null; }
+ const numPeaks=parseInt($('numPeaks').value), model=$('fitModel').value, bgModel=$('bgModel').value; const x=data.map(d=>d.twoTheta), y=data.map(d=>d.intensity); const seed=seedParams||createInitialGuess(data,numPeaks,model,bgModel); const start=vectorFromParams(seed,model,bgModel);
+ const span=fitRange.max-fitRange.min, ampScale=Math.max(...y)-Math.min(...y)||1; const step=start.map((v,i)=>{ if(i===0) return ampScale*0.05; if(bgModel==='linear'&&i===1) return ampScale*0.01; const j=i-(bgModel==='linear'?2:1); const modeCount=model==='pvoigt'?4:3; const t=((j%modeCount)+modeCount)%modeCount; if(t===0) return ampScale*0.08; if(t===1) return span*0.03; if(t===2) return Math.max(span*0.02,0.02); return 0.1; });
+ const obj=v=>objective(v,x,y,numPeaks,model,bgModel,fitRange.min,fitRange.max); const res=nelderMead(obj,start,step,450); const params=buildParamsFromVector(res.x,numPeaks,model,bgModel); params.peaks.sort((a,b)=>a.center-b.center); return {data,params,model,bgModel,numPeaks,sse:res.fx,seed}; }
+$('fitBtn').addEventListener('click',()=>{ if(!rawData.length) return; if(fitRange.min==null||fitRange.max==null||fitRange.max<=fitRange.min){ alert('Choose a valid fit range first.'); return; } const out=fitCurrentRange(); if(!out) return; initialSeed=structuredClone(out.seed); reviewState={...out, rangeMin:fitRange.min, rangeMax:fitRange.max}; resultsCard.classList.add('hidden'); buildReviewControls(); reviewCard.classList.remove('hidden'); void reviewCard.offsetHeight; requestAnimationFrame(()=>{ requestAnimationFrame(()=>{ drawReview(); reviewCard.scrollIntoView({behavior:'smooth', block:'start'}); }); }); setTimeout(()=>{ drawReview(); },120); });
+function buildReviewControls(){ const wrap=$('reviewControls'); wrap.innerHTML=''; if(!reviewState) return; const bg=document.createElement('div'); bg.className='review-group'; bg.innerHTML=`<div class="review-group-title">Background</div><div class="param-grid"> <div class="s-field"><label class="s-label">Intercept</label><input type="number" step="any" id="bg0Input" value="${reviewState.params.bg0}"></div> ${reviewState.bgModel==='linear'?`<div class="s-field"><label class="s-label">Slope</label><input type="number" step="any" id="bg1Input" value="${reviewState.params.bg1}"></div>`:''} </div>`; wrap.appendChild(bg);
+ reviewState.params.peaks.forEach((pk,i)=>{ const g=document.createElement('div'); g.className='review-group'; g.innerHTML=`<div class="review-group-title">Peak ${i+1}</div><div class="param-grid"> <div class="s-field"><label class="s-label">Center (2θ)</label><input type="number" step="0.0001" id="center_${i}" value="${pk.center}"></div> <div class="s-field"><label class="s-label">Height</label><input type="number" step="any" id="amp_${i}" value="${pk.amp}"></div> <div class="s-field"><label class="s-label">FWHM (°)</label><input type="number" step="0.0001" id="fwhm_${i}" value="${pk.fwhm}"></div> ${reviewState.model==='pvoigt'?`<div class="s-field"><label class="s-label">η (Lorentzian fraction)</label><input type="number" step="0.01" min="0" max="1" id="eta_${i}" value="${pk.eta}"></div>`:''} </div>`; wrap.appendChild(g); }); }
+function paramsFromInputs(){ const p={bg0:parseFloat($('bg0Input').value), bg1:reviewState.bgModel==='linear'?parseFloat($('bg1Input').value):0, peaks:[]}; for(let i=0;i<reviewState.numPeaks;i++){ p.peaks.push({ center:parseFloat($('center_'+i).value), amp:parseFloat($('amp_'+i).value), fwhm:parseFloat($('fwhm_'+i).value), eta:reviewState.model==='pvoigt'?parseFloat($('eta_'+i).value):0.5 }); } return p; }
+$('refitBtn').addEventListener('click',()=>{ if(!reviewState) return; const out=fitCurrentRange(paramsFromInputs()); if(!out) return; reviewState={...out, rangeMin:fitRange.min, rangeMax:fitRange.max}; buildReviewControls(); drawReview(); });
+$('resetGuessBtn').addEventListener('click',()=>{ if(!reviewState||!initialSeed) return; const out=fitCurrentRange(initialSeed); if(!out) return; reviewState={...out, rangeMin:fitRange.min, rangeMax:fitRange.max}; buildReviewControls(); drawReview(); });
+$('acceptFitBtn').addEventListener('click',()=>{ if(!reviewState) return; acceptedFit=JSON.parse(JSON.stringify(reviewState)); updateResults(); resultsCard.classList.remove('hidden'); });
+function drawReview(){ if(!reviewState) return; const {w,h}=setupCanvas(reviewCanvas); const c=rctx; c.setTransform(DPR,0,0,DPR,0,0); c.clearRect(0,0,w,h); const data=reviewState.data; const xMin=reviewState.rangeMin, xMax=reviewState.rangeMax; const xmid=0.5*(xMin+xMax); const rawY=data.map(d=>yValue(d.intensity)); const fitPts=data.map(d=>({x:d.twoTheta,y:modelY(d.twoTheta,reviewState.params,reviewState.model)})); const fitY=fitPts.map(p=>yValue(p.y)); let yMin=Math.min(...rawY,...fitY), yMax=Math.max(...rawY,...fitY); const dy=yMax-yMin||1; yMin-=0.08*dy; yMax+=0.12*dy; drawAxes(c,w,h,'2θ (°)',logScale?'log₁₀(Intensity)':'Intensity',xMin,xMax,yMin,yMax);
+ function localToCanvas(x,y){ return { x:PAD.l+(x-xMin)/(xMax-xMin)*(w-PAD.l-PAD.r), y:PAD.t+(yMax-y)/(yMax-yMin)*(h-PAD.t-PAD.b)}; }
+ c.beginPath(); c.strokeStyle='#501214'; c.lineWidth=1.3; data.forEach((d,i)=>{ const p=localToCanvas(d.twoTheta,yValue(d.intensity)); if(i===0) c.moveTo(p.x,p.y); else c.lineTo(p.x,p.y); }); c.stroke();
+ c.beginPath(); c.strokeStyle='#6A5638'; c.lineWidth=2; fitPts.forEach((d,i)=>{ const p=localToCanvas(d.x,yValue(d.y)); if(i===0) c.moveTo(p.x,p.y); else c.lineTo(p.x,p.y); }); c.stroke();
+ c.beginPath(); c.strokeStyle='#1f5c5c'; c.lineWidth=1.3; data.forEach((d,i)=>{ const bg=reviewState.params.bg0+reviewState.params.bg1*(d.twoTheta-xmid); const p=localToCanvas(d.twoTheta,yValue(bg)); if(i===0) c.moveTo(p.x,p.y); else c.lineTo(p.x,p.y); }); c.stroke();
+ const compColors=['#9a6d38','#7a3b3d','#3f6d72'];
+ reviewState.params.peaks.forEach((pk,j)=>{ c.beginPath(); c.strokeStyle=compColors[j%compColors.length]; c.lineWidth=1; data.forEach((d,i)=>{ const bg=reviewState.params.bg0+reviewState.params.bg1*(d.twoTheta-xmid); const yy=bg + pk.amp*peakShape(reviewState.model,d.twoTheta,pk.center,pk.fwhm,pk.eta); const p=localToCanvas(d.twoTheta,yValue(yy)); if(i===0) c.moveTo(p.x,p.y); else c.lineTo(p.x,p.y); }); c.stroke(); }); }
 
-<p class="smg-p">The app is intended for common text-based XRD exports and follows the same lightweight parsing philosophy as the existing SUPERMAG single-file tools. It is suitable for scan files in which the first numeric column is <span class="smg-mono">2&theta;</span> and the second numeric column is intensity, or for supported vendor-specific export formats already handled by the loader.</p>
-
-<div class="smg-table-wrap">
-  <table class="smg-table">
-    <thead><tr><th>Supported input style</th><th>Examples</th></tr></thead>
-    <tbody>
-      <tr><td>Rigaku</td><td><span class="smg-mono">.ras</span>, <span class="smg-mono">.asc</span></td></tr>
-      <tr><td>Bruker text-like exports</td><td><span class="smg-mono">.dql</span>, <span class="smg-mono">.raw</span> when readable as text export</td></tr>
-      <tr><td>Generic text tables</td><td><span class="smg-mono">.csv</span>, <span class="smg-mono">.txt</span>, <span class="smg-mono">.dat</span>, <span class="smg-mono">.xy</span> with two numeric columns</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<p class="smg-p">The app expects the diffraction scan itself, not an already processed fit export. If multiple metadata blocks are present, non-numeric lines are ignored until the numeric data region is reached.</p>
-
-<span class="smg-h2">Export Contents</span>
-
-<p class="smg-p">The app provides two export types: a point-by-point overlay file for plotting and a peak-summary file for tabular reporting.</p>
-
-<div class="smg-card">
-  <div class="smg-mod-heading">
-    <span class="smg-mod-title">Overlay CSV</span>
-  </div>
-  <p class="smg-p">This file is intended for plotting the local fit in external software such as Origin, Excel, Python, or Igor. It contains the sampled local fit window and the calculated contributions from the total model and each peak component.</p>
-
-  <div class="smg-table-wrap">
-    <table class="smg-table">
-      <thead><tr><th>Column</th><th>Meaning</th></tr></thead>
-      <tbody>
-        <tr><td>two_theta</td><td><span class="smg-mono">2&theta;</span> values within the selected fit window</td></tr>
-        <tr><td>raw_intensity</td><td>Measured intensity from the input scan</td></tr>
-        <tr><td>total_fit</td><td>Total fitted model evaluated at each <span class="smg-mono">2&theta;</span> point</td></tr>
-        <tr><td>background_fit</td><td>Fitted constant or linear background contribution</td></tr>
-        <tr><td>peak_1, peak_2, peak_3</td><td>Individual fitted peak components as applicable</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<div class="smg-card">
-  <div class="smg-mod-heading">
-    <span class="smg-mod-title">Summary CSV</span>
-  </div>
-  <p class="smg-p">This file contains one row per fitted peak and is intended for tables, notebooks, or cross-sample comparison.</p>
-
-  <div class="smg-table-wrap">
-    <table class="smg-table">
-      <thead><tr><th>Column</th><th>Meaning</th></tr></thead>
-      <tbody>
-        <tr><td>file_name</td><td>Name of the loaded scan file</td></tr>
-        <tr><td>fit_range_min, fit_range_max</td><td>Selected fit window in <span class="smg-mono">2&theta;</span></td></tr>
-        <tr><td>num_peaks</td><td>Number of fitted peaks in the local window</td></tr>
-        <tr><td>model</td><td>Gaussian, Lorentzian, or pseudo-Voigt</td></tr>
-        <tr><td>peak_index</td><td>Peak number within the fit</td></tr>
-        <tr><td>center_2theta_deg</td><td>Fitted peak center in degrees</td></tr>
-        <tr><td>fwhm_deg</td><td>Fitted full width at half maximum in degrees</td></tr>
-        <tr><td>height_or_amplitude</td><td>Reported peak magnitude parameter from the fit</td></tr>
-        <tr><td>area</td><td>Integrated peak area when available</td></tr>
-        <tr><td>d_spacing_A</td><td>Bragg <span class="smg-mono">d</span>-spacing using <span class="smg-mono">n = 1</span></td></tr>
-        <tr><td>scherrer_size_nm</td><td>Approximate uncorrected Scherrer size</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<span class="smg-h2">Parameter Reference</span>
-
-<div class="smg-table-wrap">
-  <table class="smg-table">
-    <thead><tr><th>Parameter</th><th>Description</th></tr></thead>
-    <tbody>
-      <tr><td>Wavelength</td><td>X-ray wavelength used in Bragg and Scherrer calculations</td></tr>
-      <tr><td>Substrate</td><td>Visual reference overlay for expected substrate peak positions</td></tr>
-      <tr><td>Film</td><td>Visual reference overlay for expected film peak positions</td></tr>
-      <tr><td>Fit range min/max</td><td>Local <span class="smg-mono">2&theta;</span> window used for fitting</td></tr>
-      <tr><td>Number of peaks</td><td>Count of fitted peaks in the selected local region</td></tr>
-      <tr><td>Model</td><td>Peak line shape used for all peaks in the local fit</td></tr>
-      <tr><td>Background</td><td>Constant or linear local background model</td></tr>
-      <tr><td>Log plot floor</td><td>Display-only lower intensity floor of <span class="smg-mono">1e-2</span></td></tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="smg-note"><span class="smg-strong">Best practice:</span> Use the overlay library to orient yourself, but always let the fit be driven by the measured data in the selected window. The overlays are guides, not constraints.</div>
-
-<div class="smg-hr"></div>
-
-<span class="smg-h2">Troubleshooting</span>
-
-<ul class="smg-ul">
-  <li><span class="smg-strong">The log plot looks unusable because the baseline is too low:</span> The app floors displayed intensity values to <span class="smg-mono">1e-2</span>. If the view still looks odd, reset the zoom and verify the input file has sensible intensity values.</li>
-  <li><span class="smg-strong">The wrong peak is being fitted:</span> Recheck the selected fit range. The app fits only the local window you define, so a misplaced range is the most common cause of an unexpected result.</li>
-  <li><span class="smg-strong">The fit is unstable for overlapping peaks:</span> Increase the fit window slightly, try pseudo-Voigt, and use the fit-review controls to move the initial centers closer to the visible maxima before refitting.</li>
-  <li><span class="smg-strong">The background looks overfit:</span> Switch from linear to constant background if the local baseline is nearly flat. The default background model is constant for this reason.</li>
-  <li><span class="smg-strong">The fit-review graph does not appear immediately:</span> Click <span class="smg-mono">Fit Selected Range</span> again after confirming the range is valid. If the issue persists, resize the browser or reload the applet and retry. This behavior is usually related to canvas rendering rather than the fit itself.</li>
-  <li><span class="smg-strong">The Scherrer value looks too small or too large:</span> Remember that the current result is uncorrected for instrumental broadening. Use it as a comparative indicator, not as a final microstructural value.</li>
-  <li><span class="smg-strong">The file fails to parse:</span> Check that the file is a text-based export and that the scan data appear as numerical <span class="smg-mono">2&theta;</span>/intensity columns.</li>
-</ul>
-
-</div>
-
-<div class="smg-footer">
-  <strong>SUPERMAG Lab &mdash; Department of Physics, Texas State University</strong><br>
-  XRD Peak Fitting Applet User Guide &mdash; 2026. This tool is provided as-is for research use, without guarantee or warranty.
-  Users should independently verify all outputs.
-</div>
-
-</div>
+function updateResults(){ if(!acceptedFit) return; const lambda=parseFloat($('wavelength').value); const grid=$('resultGrid'); grid.innerHTML=''; const items=[
+  {l:'File',v:fileName||'—'},
+  {l:'Range',v:`${acceptedFit.rangeMin.toFixed(3)}–${acceptedFit.rangeMax.toFixed(3)}°`},
+  {l:'Model',v:acceptedFit.model},
+  {l:'Peaks',v:String(acceptedFit.numPeaks)},
+  {l:'Background',v:acceptedFit.bgModel},
+  {l:'Scherrer note',v:'Approx., uncorrected'}
+ ]; items.forEach(it=>{ const d=document.createElement('div'); d.className='result-item'; d.innerHTML=`<div class="rlabel">${it.l}</div><div class="rval">${it.v}</div>`; grid.appendChild(d); });
+ const tbl=$('peakTable'); let html='<tr><th>Peak</th><th>Center 2θ (°)</th><th>FWHM (°)</th><th>Height</th><th>Area</th><th>d (Å)</th><th>Scherrer (nm)</th></tr>';
+ acceptedFit.params.peaks.forEach((pk,i)=>{ const area=estimateArea(pk,acceptedFit.model); const d=dSpacing(pk.center,lambda); const sch=scherrerSize(pk.fwhm,pk.center,lambda)/10; html+=`<tr><td>${i+1}</td><td>${pk.center.toFixed(4)}</td><td>${pk.fwhm.toFixed(4)}</td><td>${pk.amp.toExponential(3)}</td><td>${area.toExponential(3)}</td><td>${d.toFixed(4)}</td><td>${isFinite(sch)?sch.toFixed(2):'—'}</td></tr>`; });
+ tbl.innerHTML=html; }
+function overlayRows(){ const fit=acceptedFit||reviewState; if(!fit) return []; const xmid=0.5*(fit.rangeMin+fit.rangeMax); return fit.data.map(d=>{ const bg=fit.params.bg0+fit.params.bg1*(d.twoTheta-xmid); const row={twoTheta:d.twoTheta, raw:d.intensity, total:bg, background:bg}; fit.params.peaks.forEach((pk,i)=>{ const val=pk.amp*peakShape(fit.model,d.twoTheta,pk.center,pk.fwhm,pk.eta); row['peak_'+(i+1)] = val; row.total += val; }); return row; }); }
+$('exportOverlayBtn').addEventListener('click',()=>{ const rows=overlayRows(); if(!rows.length) return; const cols=['twoTheta','raw','total','background']; for(let i=1;i<= (acceptedFit||reviewState).numPeaks;i++) cols.push('peak_'+i); let csv=cols.join(',')+'\n'; rows.forEach(r=>{ csv += cols.map(c=>r[c]??'').join(',')+'\n'; }); downloadCSV(csv, (fileName?fileName.replace(/\.[^.]+$/,''):'xrd') + '_fit_overlay.csv'); });
+$('exportSummaryBtn').addEventListener('click',()=>{ if(!acceptedFit) return; const lambda=parseFloat($('wavelength').value); const cols=['file_name','fit_range_min','fit_range_max','number_of_peaks','model','peak_index','center_2theta_deg','fwhm_deg','height','area','d_spacing_A','scherrer_nm']; let csv=cols.join(',')+'\n'; acceptedFit.params.peaks.forEach((pk,i)=>{ const area=estimateArea(pk,acceptedFit.model); const d=dSpacing(pk.center,lambda); const sch=scherrerSize(pk.fwhm,pk.center,lambda)/10; const vals=[fileName,acceptedFit.rangeMin,acceptedFit.rangeMax,acceptedFit.numPeaks,acceptedFit.model,i+1,pk.center,pk.fwhm,pk.amp,area,d,sch]; csv+=vals.join(',')+'\n'; }); downloadCSV(csv, (fileName?fileName.replace(/\.[^.]+$/,''):'xrd') + '_fit_summary.csv'); });
+function downloadCSV(csv,name){ const blob=new Blob([csv],{type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; a.click(); }
+window.addEventListener('resize',()=>{ if(rawData.length) drawMain(); if(reviewState) drawReview(); });
+</script>
 </body>
 </html>
